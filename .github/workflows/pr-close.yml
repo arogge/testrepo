@@ -20,7 +20,7 @@ jobs:
       with:
         ref: ${{ github.base_ref }}
 
-    - uses: arogge/changelog-action@v1
+    - uses: arogge/changelog-action@v2
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
