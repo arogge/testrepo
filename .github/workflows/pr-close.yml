@@ -5,6 +5,9 @@ name: Close Pull Request
 on:
   pull_request_target:
     types: [ closed ]
+    branches:
+      - master
+      - bareos-[2-9]*
 
 jobs:
   merge_job:
