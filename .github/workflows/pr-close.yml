@@ -21,6 +21,9 @@ jobs:
         ref: ${{ github.base_ref }}
 
     - uses: arogge/changelog-action@v2
+      with:
+        pull-request: ${{ github.event.number }}
+        change-entry: "${{ github.event.pull_request.title }}"
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
