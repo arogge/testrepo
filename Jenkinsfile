@@ -7,6 +7,7 @@ pipeline {
 
   stages {
    stage("built-in") {
+     agent { label "master" }
      steps {
        dir("sources") {
          checkout scm
