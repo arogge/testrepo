@@ -3,6 +3,14 @@ pipeline {
     skipDefaultCheckout true
     disableConcurrentBuilds()
   }
+  environment {
+    GIT_AUTHOR_NAME = "Jenkins"
+    GIT_COMMITTER_NAME = "Jenkins"
+    GIT_AUTHOR_EMAIL = "jenkins@bareos.com"
+    GIT_COMMITTER_EMAIL = "jenkins@bareos.com"
+    GIT_AUTHOR_DATE = "Wed Feb 16 14:00 2037 +0100"
+    GIT_COMITTER_DATE = "Wed Feb 16 14:00 2037 +0100"
+  }
   agent none
 
   stages {
