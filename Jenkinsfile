@@ -17,6 +17,9 @@ pipeline {
    stage("built-in") {
      agent { label "master" }
      steps {
+       script {
+         sh 'env'
+       }
        dir("sources") {
          checkout scm
        }
