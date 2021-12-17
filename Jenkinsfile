@@ -18,13 +18,9 @@ pipeline {
      agent { label "master" }
      steps {
        script {
-         sh 'env'
-       }
-       dir("sources") {
-         checkout scm
-       }
-       script {
          dir("sources") {
+           sh 'env'
+           checkout scm
            sh 'git show HEAD'
            sh 'git cat-file commit HEAD'
 	 }
