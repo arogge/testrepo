@@ -1,0 +1,29 @@
+name: Build on MacOS (Test)
+
+on:
+  workflow_dispatch:
+    inputs:
+      refspec:
+        description: "Github ref-spec of the reference to build"
+        required: true
+        type: string
+      version:
+        description: "The resulting version number of the build"
+        required: true
+        type: string
+      timestamp:
+        description: "The timestamp of the version"
+        required: true
+        type: number
+
+jobs:
+  build:
+    name: Build and Test MacOS
+    runs-on: macos-12
+    steps:
+    - name: "Checkout source"
+      uses: actions/checkout@v3
+      with:
+        repository: bareos/bareos
+        ref: "${{ inputs.refspec }}"
+
