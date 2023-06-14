@@ -29,6 +29,9 @@ jobs:
       with:
         repository: bareos/bareos
         ref: "${{ inputs.refspec }}"
+    - name: "Check HEAD commit"
+      run: |
+        git cat-file -p HEAD
     - name: Install dependencies
       run: |
         brew install jansson
