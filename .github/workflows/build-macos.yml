@@ -34,7 +34,7 @@ jobs:
         brew install jansson
     - name: Inject version parameters
       run: |
-        echo -e "set(VERSION_STRING '$VERSION')\nset(VERSION_TIMESTAMP '$TIMESTAMP')" > core/cmake/BareosVersion.cmake
+        echo -e "set(VERSION_STRING \"$VERSION\")\nset(VERSION_TIMESTAMP \"$TIMESTAMP\")" >core/cmake/BareosVersion.cmake
         cat core/cmake/BareosVersion.cmake
       env:
         VERSION: "${{ inputs.version }}"
