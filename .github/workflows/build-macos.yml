@@ -33,7 +33,7 @@ jobs:
       run: |
         brew install jansson
 
-    -name: Build package
+    - name: Build package
       run: |
         export CXXFLAGS="-I/usr/local/include"
         cmake -S . -B cmake-build -Dclient-only=yes
