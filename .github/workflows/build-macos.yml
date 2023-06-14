@@ -32,13 +32,21 @@ jobs:
     - name: Install dependencies
       run: |
         brew install jansson
-
+    - name: Inject version parameters
+      run: |
+        echo -e "set(VERSION_STRING '$VERSION')\nset(VERSION_TIMESTAMP '$TIMESTAMP')" > core/cmake/BareosVersion.cmake
+        cat core/cmake/BareosVersion.cmake
+      env:
+        VERSION: "${{ inputs.version }}"
+        TIMESTAMP: "${{ inputs.timestamp }}"
     - name: Build package
       run: |
-        export CXXFLAGS="-I/usr/local/include"
         cmake -S . -B cmake-build -Dclient-only=yes
         cmake --build cmake-build -- package
         ls -la ./*.pkg
         mkdir -p "${{ env.target_dir }}"
         mv ./*.pkg "${{ env.target_dir }}"
+      env:
+        CFLAGS: -I/usr/local/include
+        CXXFLAGS: -I/usr/local/include
 
