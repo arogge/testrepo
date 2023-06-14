@@ -1,5 +1,8 @@
 name: Build on MacOS (Test)
 
+env:
+  target_dir: "${{ github.workspace }}/BUILD_RESULTS/MacOS"
+
 on:
   workflow_dispatch:
     inputs:
@@ -18,7 +21,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test MacOS
+    name: Build and test MacOS
     runs-on: macos-12
     steps:
     - name: "Checkout source"
@@ -26,4 +29,16 @@ jobs:
       with:
         repository: bareos/bareos
         ref: "${{ inputs.refspec }}"
+    - name: Install dependencies
+      run: |
+        brew install jansson
+
+    -name: Build package
+      run: |
+        export CXXFLAGS="-I/usr/local/include"
+        cmake -S . -B cmake-build -Dclient-only=yes
+        cmake --build cmake-build -- package
+        ls -la ./*.pkg
+        mkdir -p "${{ env.target_dir }}"
+        mv ./*.pkg "${{ env.target_dir }}"
 
