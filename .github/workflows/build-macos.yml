@@ -43,10 +43,23 @@ jobs:
       run: |
         cmake -S . -B cmake-build -Dclient-only=yes
         cmake --build cmake-build -- package
-        ls -la ./*.pkg
+        ls -la cmake-build/*.pkg
         mkdir -p "${{ env.target_dir }}"
-        mv ./*.pkg "${{ env.target_dir }}"
+        mv cmake-build/*.pkg "${{ env.target_dir }}"
+        cp core/src/include/config.h "${{ env.target_dir }}"
       env:
         CFLAGS: -I/usr/local/include
         CXXFLAGS: -I/usr/local/include
+    - name: CTest
+      run: |
+        cd cmake-build
+        result=0
+        ctest -V -S CTestScript.cmake
+        mv ./Testing "${{ env.target_dir }}"
 
+    - name: Upload package
+      uses: actions/upload-artifact@v3
+      with:
+        name: MacOS
+        path: ${{ env.target_dir }}
+        retention-days: 1
