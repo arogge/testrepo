@@ -6,6 +6,7 @@ pipeline {
         docker {
 	  label 'docker' 
 	  image 'repobuild'
+	  args '-v /etc/passwd:/etc/passwd'
 	  alwaysPull true
 	  registryUrl 'https://registry.bareos.com'
 	  registryCredentialsId 'jenkins_at_registry_bareos_com'
