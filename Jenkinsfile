@@ -20,7 +20,7 @@ pipeline {
           sh '''
 	    env
 	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=$WORKSPACE/ssh_known_hosts 78.35.144.140 -fN -L /tmp/p11-kit.sock:/run/user/1001/p11-kit/pkcs11
-	    p11tool --list-tokens
+	    p11tool --debug=100 --list-tokens
 	  '''
 	}
       }
