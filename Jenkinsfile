@@ -12,11 +12,15 @@ pipeline {
 	  registryCredentialsId 'jenkins_at_registry_bareos_com'
 	}
       }
+      environment {
+        P11_KIT_SERVER_ADDRESS = 'unix:path=/tmp/p11-kit.sock'
+      }
       steps {
         sshagent(credentials: ['ssh-key-hsm-server']) {
           sh '''
-	    ssh-add -l
-	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=$WORKSPACE/ssh_known_hosts 78.35.144.140 uname -a
+	    env
+	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=$WORKSPACE/ssh_known_hosts 78.35.144.140 -fN -L /tmp/p11-kit.sock:/run/user/1001/p11-kit/pkcs11
+	    p11tool --list-tokens
 	  '''
 	}
       }
