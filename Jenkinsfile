@@ -17,8 +17,10 @@ pipeline {
           sh '''
 	    ssh-add -l
 	    env
-	    #[ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-	    #ssh-keyscan -p 20022 78.35.144.140 >> ~/.ssh/known_hosts
+	    ls -l /var/lib
+	    ls -l /var/lib/jenkins
+	    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+	    ssh-keyscan -p 20022 78.35.144.140 >> ~/.ssh/known_hosts
 	    ssh -l jenkins -p 20022 78.35.144.140 uname -a
 	  '''
 	}
