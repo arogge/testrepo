@@ -6,7 +6,7 @@ pipeline {
         docker {
 	  label 'docker' 
 	  image 'repobuild'
-	  args '--volume /etc/passwd:/etc/passwd --tmpfs /var/lib/jenkins:rw,mode=1777'
+	  args '--volume /etc/passwd:/etc/passwd'
 	  alwaysPull true
 	  registryUrl 'https://registry.bareos.com'
 	  registryCredentialsId 'jenkins_at_registry_bareos_com'
@@ -20,8 +20,8 @@ pipeline {
 	    ls -l /var/lib
 	    ls -l /var/lib/jenkins
 	    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-	    ssh-keyscan -p 20022 78.35.144.140 >> ~/.ssh/known_hosts
-	    ssh -l jenkins -p 20022 78.35.144.140 uname -a
+	    ssh-keyscan -p 20022 78.35.144.140 >> /tmp/ssh_known_hosts
+	    ssh -l jenkins -p 20022 -o UserKnownHostsFile=/tmp/ssh_know_hosts 78.35.144.140 uname -a
 	  '''
 	}
       }
