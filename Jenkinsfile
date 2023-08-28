@@ -16,9 +16,7 @@ pipeline {
         sshagent(credentials: ['ssh-key-hsm-server']) {
           sh '''
 	    ssh-add -l
-	    env
-	    ssh-keyscan -p 20022 78.35.144.140 >> /tmp/ssh_known_hosts
-	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=/tmp/ssh_known_hosts 78.35.144.140 uname -a
+	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=$WORKSPACE/ssh_known_hosts 78.35.144.140 uname -a
 	  '''
 	}
       }
