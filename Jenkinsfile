@@ -17,11 +17,8 @@ pipeline {
           sh '''
 	    ssh-add -l
 	    env
-	    ls -l /var/lib
-	    ls -l /var/lib/jenkins
-	    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
 	    ssh-keyscan -p 20022 78.35.144.140 >> /tmp/ssh_known_hosts
-	    ssh -l jenkins -p 20022 -o UserKnownHostsFile=/tmp/ssh_know_hosts 78.35.144.140 uname -a
+	    ssh -l jenkins -p 20022 -F /dev/null -oUserKnownHostsFile=/tmp/ssh_known_hosts 78.35.144.140 uname -a
 	  '''
 	}
       }
