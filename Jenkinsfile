@@ -15,6 +15,7 @@ pipeline {
 				HOME = "/tmp/user-home"
       }
       steps {
+        fileOperations([folderCreateOperation('/tmp/user-home')])
         sh 'uname -a'
         sh 'mkdir -p $HOME'
       }
