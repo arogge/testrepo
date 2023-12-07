@@ -12,7 +12,7 @@ pipeline {
 	      }
       }
       environment {
-				HOME = "${WORKSPACE}/user-home"
+				HOME = "/tmp/user-home"
       }
       steps {
         sh 'uname -a'
