@@ -16,8 +16,7 @@ pipeline {
       }
       steps {
         fileOperations([folderCreateOperation('/tmp/user-home')])
-        sh 'uname -a'
-        sh 'mkdir -p $HOME'
+        sh 'touch /tmp/testfile'
       }
     }
   }
