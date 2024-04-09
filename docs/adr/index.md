@@ -5,6 +5,7 @@
 
 * [0000 - Record architecture decisions](0000-record-architecture-decisions.md)
 * [0001 - Use Markdown Architectural Decision Records](0001-use-markdown-architectural-decision-records.md)
+* [0002 - use plain text for resource item descriptions](0002-use-plain-text-for-resource-item-descriptions.md)
 
 ## Rejected Records
 
