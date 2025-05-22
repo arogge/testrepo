@@ -2,7 +2,8 @@ pipeline {
   agent none
   stages {
     stage("Test") {
-      node('testing-vm') {
+      agent { label 'testing-vm' }
+      steps {
         checkout scm
         steps {
           sh 'cmake -S . -B build'
