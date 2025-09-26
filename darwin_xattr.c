@@ -33,10 +33,10 @@ int main(int argc, char** argv)
   (void)argv;
 
   // MacOS/Darwin extended attribute functions
-  getxattr(ptr, ptr2, ptr3, 0);
+  getxattr(ptr, ptr2, ptr3, 0, 0, 0);
   getxattr(ptr, ptr2, ptr3, 0, 0, XATTR_NOFOLLOW);
-  listxattr(ptr, ptr2, 0);
+  listxattr(ptr, ptr2, 0, 0);
   listxattr(ptr, ptr2, 0, XATTR_NOFOLLOW);
-  setxattr(ptr, ptr2, ptr3, 0, 0);
+  setxattr(ptr, ptr2, ptr3, 0, 0, 0);
   setxattr(ptr, ptr2, ptr3, 0, 0, XATTR_NOFOLLOW);
 }
